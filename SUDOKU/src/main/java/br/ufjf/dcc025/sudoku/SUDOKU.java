@@ -13,5 +13,6 @@ public class SUDOKU {
     public static void main(String[] args) {
         System.out.println("tentando agora");
         System.out.println("tentando agora");
+        System.out.println("tentando agora");
     }
 }
