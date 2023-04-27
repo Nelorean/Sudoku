@@ -14,5 +14,6 @@ public class SUDOKU {
         System.out.println("tentando agora");
         System.out.println("tentando agora");
         System.out.println("tentando agora");
+        System.out.println("tentando agora");
     }
 }
