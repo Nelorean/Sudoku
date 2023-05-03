@@ -6,7 +6,6 @@ package br.ufjf.dcc025.sudoku;
  *
  * @author Victor
  */
-import javax.swing.JOptionPane;
 import java.util.Scanner;
 public class SUDOKU {
     private static final int DIMENSAO = 9;
@@ -15,21 +14,19 @@ public class SUDOKU {
     public static void main(String[] args) {
       Scanner teclado = new Scanner(System.in);
       int saida = 0;
+      int option = 0;
       int again = 0;
       int[][] tabuleiro = new int [DIMENSAO][DIMENSAO];
-      for(int i = 0; i < DIMENSAO; i ++){
-          for (int j = 0; j < DIMENSAO; j++){
-              tabuleiro[i][j] = 0;
-          }
-      }
-       while(saida == 0){
-          System.out.println("""
-                             Bem vindo ao Sudoku! 
-                             Qual op\u00e7\u00e3o voc\u00ea deseja?
-                             (1) Jogo Aleat\u00f3rio
-                             (2) Montar seu pr\u00f3prio jogo
-                             (3) Sair do jogo""");   
-          int option = teclado.nextInt(); 
+      criaTabuleiro(tabuleiro);
+            while(saida == 0){
+            System.out.println("""
+                               Bem vindo ao Sudoku! 
+                               Qual op\u00e7\u00e3o voc\u00ea deseja?
+                               (1) Jogo Aleat\u00f3rio
+                               (2) Montar seu pr\u00f3prio jogo
+                               (3) Sair do jogo""");
+                               option=teclado.nextInt();           
+
             switch(option){                
                 case 1 -> {
                     System.out.println("""
@@ -47,11 +44,45 @@ public class SUDOKU {
                       saida = 1;
                   }
               }
-                case 2 -> saida = 1;
+                case 2 -> {
+                    System.out.println("""
+                                       Informe a linha, a coluna e o valor desejado separados por virgula.
+                                       Caso haja mais de uma casa para inserir, separa-las por parenteses e sem espa\u00e7o.""");
+                    String adicao = teclado.next();
+                    int[][] customTabuleiro = new int [DIMENSAO][DIMENSAO];
+                    int[][] gabTab = new int [DIMENSAO][DIMENSAO];
+                    criaTabuleiro(customTabuleiro);
+                    criaTabuleiro(gabTab);                    
+                    setValor(customTabuleiro, adicao);
+                    copiaTab(customTabuleiro, gabTab);
+                    imprime(customTabuleiro);
+                    if(gabarito(gabTab)){
+                        System.out.println("Jogo pronto para jogar");
+                        System.out.println("""
+                                           Informe a linha, a coluna e o valor desejado separados por virgula.
+                                           Caso haja mais de uma jogada, separa-las por parenteses e sem espa\u00e7o.""");
+                        imprime(gabTab);                   
+                        String jogoCustom = teclado.next();
+                        setValor(tabuleiro, jogoCustom);
+                        jogoCustom = "";
+                        imprime(customTabuleiro);
+                    }
+                    else{
+                        System.out.println("Jogo sem solução ");
+                        saida =1;
+                        imprime(customTabuleiro);
+                    }
+                    again = teclado.nextInt();
+                  if (again == 1) {
+                  } else {
+                      saida = 1;
+                  }
+              }           
+
                 case 3 -> saida = 1;
                 default -> System.out.println("Opção Inválida!");
             }
-          };
+        };
 
       if(gabarito(tabuleiro)){
         System.out.println("Jogo valido e pronto para ser jogado!");
@@ -73,8 +104,7 @@ public class SUDOKU {
           System.out.print("\n");
       }
     }
-
-
+    
     private static boolean validaLinha(int[][] tabuleiro, int n, int linha) {
       for (int i = 0; i < DIMENSAO; i++) {
         if (tabuleiro[linha][i] == n) {
@@ -135,6 +165,7 @@ public class SUDOKU {
     }
     return true;
     }
+    
     private static void setValor(int [][]tabuleiro, String jogo){
         int linha = 0; int coluna = 0; int valor = 0;
         for(int i = 1; i < jogo.length(); i+=7){
@@ -149,6 +180,22 @@ public class SUDOKU {
             }
             else{
                 System.out.println("Jogada Inválida: \n");
+            }
+        }
+    }
+    
+    private static void criaTabuleiro(int [][] tabuleiro){
+        for(int i = 0; i < DIMENSAO;i++){
+            for (int j = 0; j< DIMENSAO; j ++){
+                tabuleiro[i][j] = 0;
+            }
+        }
+    }
+    
+    private static void copiaTab(int [][] tabuleiro, int [][] gabTab){
+        for (int i = 0; i < DIMENSAO; i ++){
+            for (int j = 0; j < DIMENSAO; j ++){
+                gabTab[i][j] = tabuleiro[i][j];
             }
         }
     }
