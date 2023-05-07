@@ -23,6 +23,7 @@ public class SUDOKU {
         int saida = 0;
 
         while (saida == 0) {
+            System.out.println("Bem vindo ao Sudoku!!");
             System.out.println("Escolha uma opção:");
             System.out.println("1 - Gerar novo jogo");
             System.out.println("2 - Jogar");
@@ -32,7 +33,6 @@ public class SUDOKU {
 
             switch (option) {
                 case 1:
-                    System.out.println("Bem vindo ao Sudoku!!");
                     System.out.println("Escolha uma opção:");
                     System.out.println("1 - Jogo Aletório");
                     System.out.println("2 - Jogo Pesonalizado");
