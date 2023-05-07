@@ -1,1 +1,0 @@
-Esse projeto possui um arquivo .bat para execução,Sudoku.bat, e um outro arquvi.bat para compilação ,compiler.bat.
