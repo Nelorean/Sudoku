@@ -12,10 +12,6 @@ package br.dcc025.SUDOKU;
  * @author Victor
  */
 import java.util.Scanner;
-<<<<<<< HEAD
-=======
-import java.util.Random;
->>>>>>> 1808d21e84900b6c70db3666fa5dd76c0c57f7b8
 
 public class SUDOKU {
     public static void main(String[] args) {
@@ -36,10 +32,7 @@ public class SUDOKU {
 
             switch (option) {
                 case 1:
-<<<<<<< HEAD
                     System.out.println("Bem vindo ao Sudoku!!");
-=======
->>>>>>> 1808d21e84900b6c70db3666fa5dd76c0c57f7b8
                     System.out.println("Escolha uma opção:");
                     System.out.println("1 - Jogo Aletório");
                     System.out.println("2 - Jogo Pesonalizado");
@@ -94,7 +87,6 @@ public class SUDOKU {
                                 tabuleiro.imprimeTabuleiro();                            
                                 if (tabuleiro.contaVazias() == 0) {
                                     System.out.println("Parabéns, você ganhou!");
-<<<<<<< HEAD
                                     System.out.println("1 - Jogar novamente");
                                     System.out.println("2 - Sair do jogo");
                                     int denovo=teclado.nextInt();
@@ -105,10 +97,6 @@ public class SUDOKU {
                                         saida = 1;
                                         break;
                                     }
-=======
-                                    saida = 1;
-                                    break;
->>>>>>> 1808d21e84900b6c70db3666fa5dd76c0c57f7b8
                                 }
                             }
                             else if(jogadas.equals("remover")){
