@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 package br.ufjf.dcc025.sudoku;
+import br.ufjf.dcc025.sudoku.tabuleiro;
 
 /**
  *
@@ -19,13 +20,13 @@ public class SUDOKU {
         int again = 0;
         int casasVazias = 0;
         int[][] gabTab = new int [DIMENSAO][DIMENSAO];
-        
+    
         while(saida == 0){
             System.out.println("""
                                Bem vindo ao Sudoku! 
                                Qual op\u00e7\u00e3o voc\u00ea deseja?
                                (1) Jogo Aleat\u00f3rio
-                               (2) Montar seu pr\u00f3prio jogo
+                               (2) Montar seu pr\u00f3prio jog
                                (3) Sair do jogo""");
                                option=teclado.nextInt();           
 
