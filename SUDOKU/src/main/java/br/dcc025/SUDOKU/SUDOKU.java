@@ -94,7 +94,14 @@ public class SUDOKU {
                                 break;
                             }
                         };
-                            break;
+                    } 
+                    else{
+                        System.out.println();
+                        System.out.println("Opção inválida");
+                        System.out.println("Voltando ao menu principal");
+                        System.out.println();  
+                        
+                        break;
                     } 
                     case 2:
                         while (tabuleiro.contaVazias() > 0) {
