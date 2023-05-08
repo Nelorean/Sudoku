@@ -100,12 +100,18 @@ public class Tabuleiro {
         }           
 
     }
-    public void removeValor(int linha, int coluna) {
-        if (this.tabuleiro[linha-1][coluna-1] != 0) {
-            this.tabuleiro[linha-1][coluna-1] = 0;
+    public void removeValor(String remover) {
+        int linha = 0;
+        int coluna = 0;
+        for (int i = 1; i < remover.length(); i += 7) {
+            linha = Character.getNumericValue(remover.charAt(i) - 1);
+            coluna = Character.getNumericValue(remover.charAt(i + 2) - 1);
+            this.tabuleiro[linha][coluna] = 0;
             this.casasVazias++;
         }
+           
     }
+    
     public void criaTabuleiro() {
         for (int i = 0; i < DIMENSAO; i++) {
             for (int j = 0; j < DIMENSAO; j++) {
@@ -134,6 +140,7 @@ public class Tabuleiro {
         }
         return true;
     }
+    
     public void setValorCopia(int linha, int coluna, int valor) {
         this.tabuleiro[linha][coluna] = valor;
     }
@@ -146,22 +153,68 @@ public class Tabuleiro {
         }
     }
     public void geradorTabuleiro(int casas, Tabuleiro gabTab) {
-        Random gerador = new Random();
-        int linha, coluna, valor;
-        int k = 0;
-        for (int i = 0; i < casas; i++) {
-            do {
-                linha = gerador.nextInt(8);
-                coluna = gerador.nextInt(8);
-                valor = (gerador.nextInt(8) + 1);
-            } while (!insercaoValida(valor, linha, coluna));
-            this.tabuleiro[linha][coluna] = valor;
-            k++;
-        }
+        resolver();
+        int casasRemovidas = DIMENSAO * DIMENSAO - casas;
+        removerCasas(casasRemovidas, gabTab);
         copiaTab(gabTab);
     }
+    public boolean resolver() {
+        int linha = -1;
+        int coluna = -1;
+        boolean vazio = true;
+        for (int i = 0; i < DIMENSAO; i++) {
+            for (int j = 0; j < DIMENSAO; j++) {
+                if (this.tabuleiro[i][j] == 0) {
+                    linha = i;
+                    coluna = j;
+                    vazio = false;
+                    break;
+                }
+            }
+            if (!vazio) {
+                break;
+            }
+        }
+        if (vazio) {
+            return true;
+        }
+        for (int num = 1; num <= DIMENSAO; num++) {
+            if (insercaoValida(num, linha, coluna)) {
+                this.tabuleiro[linha][coluna] = num;
+                if (resolver()) {
+                    return true;
+                }
+                this.tabuleiro[linha][coluna] = 0;
+            }
+        }
+        return false;
+    }
+
+    public void removerCasas(int casas, Tabuleiro gabTab) {
+        Random gerador = new Random();
+        for (int i = 0; i < casas; i++) {
+            int x = gerador.nextInt(DIMENSAO);
+            int y = gerador.nextInt(DIMENSAO);
+            while (this.tabuleiro[y][x] == 0) {
+                x = gerador.nextInt(DIMENSAO);
+                y = gerador.nextInt(DIMENSAO);
+            }
+            gabTab.tabuleiro[y][x] = this.tabuleiro[y][x];
+            this.tabuleiro[y][x] = 0;
+            this.casasVazias--;
+        }
+    }
+
     public int contaVazias() {
-        return this.casasVazias;
+        int vazias = 0;
+        for (int linha = 0; linha < DIMENSAO; linha++) {
+            for (int coluna = 0; coluna < DIMENSAO; coluna++) {
+                if (this.tabuleiro[linha][coluna] == 0) {
+                    vazias++;
+                }
+            }
+        }
+        return vazias;
     }
 }
 
