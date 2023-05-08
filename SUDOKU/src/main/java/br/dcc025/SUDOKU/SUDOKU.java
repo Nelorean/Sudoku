@@ -26,15 +26,18 @@ public class SUDOKU {
             System.out.println("Bem vindo ao Sudoku!!");
             System.out.println(); 
             System.out.println("Escolha uma opção:");
+            System.out.println(); 
             System.out.println("1 - Gerar novo jogo");
             System.out.println("2 - Jogar");
             System.out.println("3 - Ver o gabarito");
             System.out.println("4 - Sair");
+            System.out.println(); 
             option = teclado.nextInt();
 
             switch (option) {
                 case 1:
                     System.out.println("Escolha uma opção:");
+                    System.out.println(); 
                     System.out.println("1 - Jogo Aletório");
                     System.out.println("2 - Jogo Pesonalizado");
                     System.out.println("3 - Sair");
@@ -49,10 +52,12 @@ public class SUDOKU {
                             tabuleiro.geradorTabuleiro(casas, gabTab);
                             gabTab.gabarito();
                         };                        
-                                          
+                        System.out.println("Tabuleiro gerado com sucesso!!");
+                        System.out.println();                    
                         tabuleiro.imprimeTabuleiro();
                         System.out.println(); 
-                        System.out.println("Jogo pronto para ser jogado!!");   
+                        System.out.println("Jogo pronto para ser jogado!!");  
+                        System.out.println();  
                         break; 
                     }
                     else if(choice == 2){
@@ -62,9 +67,10 @@ public class SUDOKU {
                                                "Digite remover para refazer uma jogada\n"+
                                                "Digite saida para voltar ao menu");
                             String insercao = teclado.next();
+                            System.out.println(); 
                             if (!insercao.equals("saida" ) && !insercao.equals("remover" )){
                                 tabuleiro.setValor(insercao);
-                                System.out.println(); 
+                                System.out.println("Tabuleiro atual: "); 
                                 tabuleiro.imprimeTabuleiro();
                                 System.out.println(); 
                                 System.out.println();
@@ -77,7 +83,11 @@ public class SUDOKU {
                                 System.out.println("Digite a(s) inserção(s) no formato (linha,coluna)");
                                 String remover = teclado.next();
                                 tabuleiro.removeValor(remover);
+                                System.out.println();
+                                System.out.println("Tabuleiro atual: ");
+                                System.out.println();  
                                 tabuleiro.imprimeTabuleiro();
+                                System.out.println(); 
                             }
                             else if(insercao.equals("saida")){
                                 escape = "saida";
@@ -88,16 +98,21 @@ public class SUDOKU {
                     } 
                     case 2:
                         while (tabuleiro.contaVazias() > 0) {
-                                System.out.println("Digite a(s) jogada(s) no formato (linha,coluna,valor) \n"+
-                                                "Digite remover para refazer uma jogada\n"+
-                                                "Digite saida para voltar ao menu");
-                                tabuleiro.imprimeTabuleiro(); 
+                                System.out.println("Digite a(s) jogada(s) no formato (linha,coluna,valor)");
+                                System.out.println("Digite remover para refazer uma jogada");              
+                                System.out.println("Digite saida para voltar ao menu");
+                                System.out.println();                
+                                System.out.println("Tabuleiro atual: ");
+                                System.out.println();               
+                                tabuleiro.imprimeTabuleiro();
+                                System.out.println(); 
                                 String jogadas = teclado.next();
                                 if (!jogadas.equals("saida" ) && !jogadas.equals("remover" )){
                                     tabuleiro.setValor(jogadas);
                                     tabuleiro.imprimeTabuleiro();                            
                                     if (tabuleiro.contaVazias() == 0) {
                                         System.out.println("Parabéns, você ganhou!");
+                                        System.out.println();
                                         System.out.println("1 - Jogar novamente");
                                         System.out.println("2 - Sair do jogo");
                                         int denovo=teclado.nextInt();
@@ -112,9 +127,13 @@ public class SUDOKU {
                                 }
                                 else if(jogadas.equals("remover")){
                                     System.out.println("Digite a(s) inserção(s) no formato (linha,coluna)");
+                                    System.out.println();
                                     String remover = teclado.next();
                                     tabuleiro.removeValor(remover);
+                                    System.out.println("Tabuleiro atual: ");
+                                    System.out.println();
                                     tabuleiro.imprimeTabuleiro();
+                                    System.out.println();
                                 }
                                     
                                 else if(jogadas.equals("saida")){
@@ -126,6 +145,7 @@ public class SUDOKU {
                     if(gabTab.gabarito()){
                         System.out.println();
                         gabTab.imprimeTabuleiro();
+                        System.out.println(); 
                     }
                     else{
                         System.out.println("Soução não encontrada");
