@@ -46,18 +46,24 @@ public class SUDOKU {
                     if(choice == 1 ){
                         System.out.println("Informe a quantidade de casas aleatórias: ");
                         int casas = teclado.nextInt();
-                        tabuleiro.geradorTabuleiro(casas, gabTab);
-                        System.out.println();
-                        while(!gabTab.gabarito()){
+                        if(casas < 1 || casas > 81){
+                            System.out.println("Número de casas invalida, por favor, inserir um número entre 1 e 80!");
+                            System.out.println();   
+                        }
+                        else{
                             tabuleiro.geradorTabuleiro(casas, gabTab);
-                            gabTab.gabarito();
-                        };                        
-                        System.out.println("Tabuleiro gerado com sucesso!!");
-                        System.out.println();                    
-                        tabuleiro.imprimeTabuleiro();
-                        System.out.println(); 
-                        System.out.println("Jogo pronto para ser jogado!!");  
-                        System.out.println();  
+                            System.out.println();
+                            while(!gabTab.gabarito()){
+                                tabuleiro.geradorTabuleiro(casas, gabTab);
+                                gabTab.gabarito();
+                            }; 
+                            System.out.println("Tabuleiro gerado com sucesso!!");
+                            System.out.println();                    
+                            tabuleiro.imprimeTabuleiro();
+                            System.out.println(); 
+                            System.out.println("Jogo pronto para ser jogado!!");  
+                            System.out.println();   
+                        }                     
                         break; 
                     }
                     else if(choice == 2){
